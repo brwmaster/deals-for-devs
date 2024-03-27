@@ -3,12 +3,15 @@ import DealsList from '../../components/deals/DealsList'
 import { redirect } from 'next/navigation'
 
 export default async function DealsPage() {
-  redirect('/')
   return (
     <div>
-      <h1 className="mb-10 text-center text-4xl font-bold text-white">
-        Top Deals
+      <h1 className="text-4xl font-bold text-white mb-4">
+        View all deals
       </h1>
+      <p className="text-white mb-8">
+        From online courses to conferance tickets, we&apos;ve curated the best ongoing deals!
+      </p>
+      <hr className="mb-8" />
       <CategoryOptions />
       {/* <DealsList deals={dealsList} /> */}
     </div>
