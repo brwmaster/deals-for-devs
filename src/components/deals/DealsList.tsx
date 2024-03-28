@@ -1,23 +1,26 @@
-'use client'
 import Deal from '@/components/deals/Deal'
-import { DealsRecord } from '@/xata'
+import CategoryOptions from '@/components/CategoryOptions'
+import { getXataClient } from '@/xata'
 
-export default function DealsList({
-  deals,
+export default async function DealsList({
   isAdmin = false,
 }: {
-  deals: DealsRecord[]
   isAdmin?: boolean
 }) {
+  const xataClient = getXataClient()
+  const deals = await xataClient.db.deals
+    .filter({ approved: true })
+    .sort('xata.createdAt', 'desc')
+    .getMany()
+
   return (
     <div>
-      {deals.length > 0 && (
-        <div className="grid w-full grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 sm:justify-items-stretch  md:grid-cols-3 ">
-          {deals.map((deal) => (
-            <Deal key={deal.id} deal={deal} showAdminOptions={isAdmin} />
-          ))}
-        </div>
-      )}
+      <CategoryOptions />
+      <div className="grid grid-cols-1">
+        {deals && deals.map((deal) => (
+          <Deal key={deal.xata.id} deal={deal} isAdmin={isAdmin} />
+        ))}
+      </div>
     </div>
   )
 }
