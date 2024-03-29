@@ -16,13 +16,14 @@ export default function Deal({
   }
   return (
     <div
-      className="relative max-w-sm px-4 py-8 shadow transition duration-300 ease-in-out"
+      className="relative max-w-sm px-4 py-8"
     >
       {/* {deal.image && <Image src={deal.image.url!} alt={deal.name} width={400} height={400} /> */}
+      <div className="h-48 border-2 border-transparent hover:border-teal-600 rounded-2xl"></div>
       <h2 className="text-lg font-semibold tracking-tight text-white">
         {deal.name}
       </h2>
-      <Link href={deal.link} target="_blank" rel="noopener noreferrer" className="text-teal-600 text-sm">Learn more</Link>
+      <Link href={deal.link} target="_blank" rel="noopener noreferrer" className="text-teal-600 text-sm md:text-white">Learn more</Link>
       {deal.coupon && deal.couponPercent && (
         <p className="absolute top-2 right-2 rounded-full bg-[#C4B97AE5] w-14 h-14 font-bold text-lg leading-tight flex flex-col items-center justify-center -rotate-12 ">
           <span>{deal.couponPercent}&#x25;</span>
