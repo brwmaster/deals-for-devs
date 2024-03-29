@@ -1,20 +1,8 @@
 import type { DealsRecord } from '@/xata'
 import Link from 'next/link'
+import Image from 'next/image'
 import React from 'react'
 import AdminOptions from '../AdminOptions'
-import ClickableCouponCode from '../ClickableCouponCode'
-import { FaBeer, FaVideo, FaBook, FaCog, FaCalendar } from 'react-icons/fa'
-import { Category } from '@/types/Types'
-import { format } from 'date-fns'
-import { start } from 'repl'
-
-const categoryToIcon: { [key: string]: JSX.Element } = {
-  Misc: <FaBeer />,
-  Ebook: <FaBook />,
-  Video: <FaVideo />,
-  Tool: <FaCog />,
-  Conference: <FaCalendar />,
-}
 
 export default function Deal({
   deal,
@@ -23,47 +11,25 @@ export default function Deal({
   deal: DealsRecord
   showAdminOptions?: boolean
 }) {
-  if (!deal || !deal.startDate) {
+  if (!deal) {
     return null
   }
-
-  const startDate = format(new Date(deal.startDate), 'MMM d, yyyy')
-  let endDate
-
-  if (deal.endDate) {
-    endDate = format(new Date(deal.endDate), 'MMM d, yyyy')
-  }
-
   return (
-    <Link
-      href={deal.link}
-      className="relative max-w-sm cursor-pointer rounded-lg border border-gray-200 bg-gray-800 px-4 py-8 shadow transition duration-300 ease-in-out hover:rotate-1 hover:scale-105 hover:border-4 hover:border-teal-500"
-      target="_blank"
-      rel="noopener noreferrer"
+    <div
+      className="relative max-w-sm px-4 py-8 shadow transition duration-300 ease-in-out"
     >
-      <h2 className="text-2xl font-bold tracking-tight text-gray-200">
+      {/* {deal.image && <Image src={deal.image.url!} alt={deal.name} width={400} height={400} /> */}
+      <h2 className="text-lg font-semibold tracking-tight text-white">
         {deal.name}
       </h2>
-      {deal.category && (
-        <div className="absolute right-2 top-2 text-teal-500">
-          {categoryToIcon[deal.category] as unknown as Category}
-        </div>
-      )}
-      {deal.startDate && (
-        <small className="text-gray-300">
-          {startDate} - {endDate || '??'}
-        </small>
-      )}
-      <p className="text-md mt-2 line-clamp-4 font-normal text-gray-300">
-        {deal.description}
-      </p>
-      {deal.coupon && (
-        <p className="mt-4 text-sm font-medium text-gray-400">
-          Coupon Code: <ClickableCouponCode coupon={deal.coupon} />
-          {deal.couponPercent && <span>{`(${deal.couponPercent}% off)`}</span>}
+      <Link href={deal.link} target="_blank" rel="noopener noreferrer" className="text-teal-600 text-sm">Learn more</Link>
+      {deal.coupon && deal.couponPercent && (
+        <p className="absolute top-2 right-2 rounded-full bg-[#C4B97AE5] w-14 h-14 font-bold text-lg leading-tight flex flex-col items-center justify-center -rotate-12 ">
+          <span>{deal.couponPercent}&#x25;</span>
+          <span className="font-normal text-[9px]">off</span>
         </p>
       )}
       {showAdminOptions && <AdminOptions id={deal.id} />}
-    </Link>
+    </div>
   )
 }
