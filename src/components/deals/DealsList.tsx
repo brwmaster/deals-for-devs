@@ -29,7 +29,7 @@ export default async function DealsList({
           <Deal key={deal.xata.id} deal={deal} isAdmin={isAdmin} />
         ))}
       </div>
-      <div className="bg-[#0C111C] flex flex-col items-center justify-center w-full text-white text-center my-4 h-80">
+      <div className="bg-[#0C111C] flex flex-col items-center justify-center w-full text-white text-center my-16 h-80">
         <h2 className="text-2xl font-semibold mb-4">
           Never miss a <span className="text-teal-600">deal</span> for your favorite tools or courses
         </h2>

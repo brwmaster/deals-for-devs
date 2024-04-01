@@ -14,12 +14,12 @@ export default function Deal({
   if (!deal) {
     return null
   }
+
   return (
     <div
-      className="relative max-w-sm px-4 py-8"
+      className="relative max-w-sm px-4 py-8 cursor-pointer"
     >
-      {/* {deal.image && <Image src={deal.image.url!} alt={deal.name} width={400} height={400} /> */}
-      <div className="h-48 border-2 border-transparent hover:border-teal-600 rounded-2xl"></div>
+      {deal.image && deal.image.url && <Image className="rounded-2xl border-2 border-transparent hover:border-teal-600" src={deal.image.url} alt={deal.name} width={400} height={400} />}
       <h2 className="text-lg font-semibold tracking-tight text-white">
         {deal.name}
       </h2>

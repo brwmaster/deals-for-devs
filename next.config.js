@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'us-east-1.xata.sh',
         port: '',
-        pathname: '/',
+        pathname: '/file/**',
       }
     ]
   }
