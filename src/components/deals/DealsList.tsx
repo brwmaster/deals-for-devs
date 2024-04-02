@@ -1,3 +1,5 @@
+'use client'
+
 import Deal from '@/components/deals/Deal'
 import CategoryOptions from '@/components/CategoryOptions'
 import SubscribeForm from '@/components/forms/SubscribeForm'

@@ -9,7 +9,7 @@ export default function CategoryOptions() {
           <Link
             href={`/deals`}
             key={category}
-            className="rounded-full border border-white text-white focus:bg-white focus:text-black px-4 py-2"
+            className="rounded-full border border-white text-white focus:bg-white focus:text-black px-4 py-2 hover:text-teal-600 hover:border-teal-600 transition duration-300 ease-in-out"
           >
             {category}
           </Link>
